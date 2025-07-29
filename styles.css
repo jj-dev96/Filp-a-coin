@@ -1,0 +1,175 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2.5rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        .coin-container {
+            margin: 2.5rem 0;
+            perspective: 1000px;
+        }
+
+        .coin {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s;
+            cursor: pointer;
+        }
+
+        .coin.flipping {
+            animation: coinFlip 2s ease-in-out;
+        }
+
+        @keyframes coinFlip {
+            0% { transform: rotateY(0deg); }
+            50% { transform: rotateY(900deg) scale(0.8); }
+            100% { transform: rotateY(1800deg); }
+        }
+
+        .coin-side {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: bold;
+            backface-visibility: hidden;
+            border: 6px solid #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .heads {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            transform: rotateY(0deg);
+        }
+
+        .tails {
+            background: linear-gradient(135deg, #a8edea 0%, #ee8baaff 100%);
+            color: #4a5568;
+            transform: rotateY(180deg);
+        }
+
+        .flip-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .flip-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .flip-btn:active {
+            transform: translateY(0);
+        }
+
+        .flip-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            min-height: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .result.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result.heads-win {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            animation: resultGlow 1.5s ease-in-out infinite alternate;
+        }
+
+        .result.tails-win {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #4a5568;
+            animation: resultGlow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes resultGlow {
+            from { box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
+            to { box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); }
+        }
+
+        .instruction {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #718096;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            .coin {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .coin-side {
+                font-size: 3rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .result {
+                font-size: 1.6rem;
+            }
+        }
